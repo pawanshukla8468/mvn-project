@@ -9,26 +9,20 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                sh 'mvn clean install -DskipTests'
-            }
-            post {
-                success {
-                    echo "Now Archiving."
-                    archiveArtifacts artifacts: '**/*.war'
-                }
-            }
+             steps{
+              git branch: 'vp-rem', url: "https://github.com/devopshydclub/vprofile-repo.git"
+          }
         }
         stage('Test'){
-            steps {
-                sh 'mvn test'
-            }
+             steps{
+              git branch: 'vp-rem', url: "https://github.com/devopshydclub/vprofile-repo.git"
+          } 
 
         }
          stage('Code Ananlysis'){
-            steps {
-                sh 'mvn checkstyle:checkstyle'
-            }
+             steps{
+              git branch: 'vp-rem', url: "https://github.com/devopshydclub/vprofile-repo.git"
+          } 
 
         }
     }
