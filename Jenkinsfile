@@ -20,7 +20,7 @@ pipeline {
         
         stage('BUILD'){
             steps {
-                 'mvn clean install -DskipTests'
+                bat 'mvn clean install -DskipTests'
             }
             post {
                 success {
@@ -32,19 +32,19 @@ pipeline {
 
 	stage('UNIT TEST'){
             steps {
-                 'mvn test'
+                bat 'mvn test'
             }
         }
 
 	stage('INTEGRATION TEST'){
             steps {
-                 'mvn verify -DskipUnitTests'
+                bat 'mvn verify -DskipUnitTests'
             }
         }
 		
         stage ('CODE ANALYSIS WITH CHECKSTYLE'){
             steps {
-                 'mvn checkstyle:checkstyle'
+                bat 'mvn checkstyle:checkstyle'
             }
             post {
                 success {
